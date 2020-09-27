@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    {% block meta %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ static('images/favicon.ico') }}">
+    <link href="{{ static('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ static('css/jquery-ui.min.css') }}" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- <link href="{{ static('css/font-awesome.min.css') }}" rel="stylesheet" /> -->
+     <!-- <link href="{{static('css/select2.min.css') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ static('css/bootstrap-datetimepicker-standalone.min.css') }}" rel="stylesheet" /> -->
+    <!-- <link href="{{ static('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" /> -->
+    <!-- <link href="{{ static('css/daterangepicker.css') }}" rel="stylesheet" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{static('css/jquery.atwho.css')}}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{static('css/dataTables.bootstrap.min.css')}}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{static('css/plyr.css')}}"> -->
+    {% block extracss %}{% endblock %}
+    <style>
+    </style>
+    </head>
+
+    <body>
+      {% block body %}
+      {% block content %}{% endblock %}
+
+    <input type="hidden" id="current-page" value="{% block currentpage %}{% endblock %}"/>
+    {% block beforescripts %}{% endblock %}
+    <script src="{{ static('js/jquery.min.js') }}"></script>
+    <!-- <script src="{{ static('js/jquery-ui.js') }}"></script> -->
+    <script src="{{ static('js/bootstrap.js') }}"></script>
+    <!-- <script src="{{ static('js/moment.js') }}"></script> -->
+    <!-- <script src="{{ static('js/bootstrap-datetimepicker.min.js') }}"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>    -->
+    <!-- <script src="{{ static('js/daterangepicker.js') }}"></script> -->
+    <!-- <script src="{{static('js/caret.js')}}"></script> -->
+    <!-- <script src="{{static('js/jquery.atwho.js')}}"></script> -->
+    <!-- <script src="{{static('js/jquery.dataTables.min.js')}}"></script> -->
+    <!-- <script src="{{static('js/dataTables.bootstrap.min.js')}}"></script> -->
+
+    <!-- <script src="{{static('js/plyr.js')}}"></script> -->
+    <!-- <script src="{{static('js/plyr.polyfilled.js')}}"></script> -->
+   
+    <script type="text/javascript">
+
+        const players = Array.from(document.querySelectorAll('.custom-player')).map(p => new Plyr(p));
+
+        $.ajaxSetup({
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            }
+        });
+    </script>
+    
+
+    {% block extrascripts %}{% endblock %}
+    {% endblock %}
+  </body>
+</html>

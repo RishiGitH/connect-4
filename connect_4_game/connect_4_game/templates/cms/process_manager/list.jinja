@@ -1,0 +1,248 @@
+{% extends "cms/base.jinja" %}
+{% block extracss %}
+<style type="text/css">
+	ol.progtrckr {
+    margin: 5;
+    padding: 5;
+    list-style-type none;
+}
+
+ol.progtrckr li {
+    display: inline-block;
+    text-align: center;
+    line-height: 3.5em;
+}
+
+ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+ol.progtrckr[data-progtrckr-steps="5"] li { width: 19%; }
+ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+
+ol.progtrckr li.progtrckr-done {
+    
+    border-bottom: 4px solid yellowgreen;
+    
+}
+ol.progtrckr li.progtrckr-todo {
+    color: silver; 
+    border-bottom: 4px solid silver;
+}
+
+ol.progtrckr li:after {
+    content: "\00a0\00a0";
+}
+ol.progtrckr li:before {
+    position: relative;
+    bottom: -2.5em;
+    float: left;
+    left: 50%;
+    line-height: 1em;
+}
+ol.progtrckr li.progtrckr-done:before {
+    content: "\2713";
+    color: white;
+    background-color: yellowgreen;
+    height: 2.2em;
+    width: 2.2em;
+    line-height: 2.2em;
+    border: none;
+    border-radius: 2.2em;
+
+}
+ol.progtrckr li.progtrckr-todo:before {
+    content: "\039F";
+    color: silver;
+    background-color: white;
+    font-size: 2.2em;
+    bottom: -1.2em;
+}
+
+
+
+ol.outer {
+  counter-reset: list;
+  list-style: none;
+}
+
+ol.outer li {
+  counter-increment: list;
+  margin-bottom: 10px;
+}
+
+ol.outer li::before {
+  content: counter(list);
+  background: #53bf89;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 50%;
+  width: 2.2em;
+  height: 2.2em;
+  line-height: 2.3em;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+  color:#A7A1AE;
+  background-color:#1F2739;
+}
+
+h1 {
+  font-size:3em; 
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #4DC3FA;
+}
+
+h2 {
+  font-size:1em; 
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 2em;
+  color: #FB667A;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FB667A;
+  text-decoration: none;
+}
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.container th h1 {
+      font-weight: bold;
+      font-size: 1em;
+  text-align: left;
+  color: #185875;
+}
+
+.container td {
+color:#fff;
+      font-weight: normal;
+      font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+       -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.container {
+      text-align: left;
+      overflow: hidden;
+      width: 80%;
+      margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+}
+
+.container td, .container th {
+      padding-bottom: 2%;
+      padding-top: 2%;
+  padding-left:2%;  
+}
+
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+      background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+      background-color: #2C3446;
+}
+
+.container th {
+      background-color: #1F2739;
+}
+
+.container td:first-child { color: #FB667A; }
+
+.container tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+       -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container td:hover {
+  background-color: #FFF842;
+  color: #000 !important;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+      transition-duration: 0.4s;
+      transition-property: all;
+  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+.container td:nth-child(4),
+.container th:nth-child(4) { display: none; }
+}
+
+</style>
+{% endblock %}
+{% block content %}
+    {% include 'cms/header.jinja' %}
+
+
+    <div style="color:blue;">
+    <table class="container">
+        <thead>
+            <tr>
+                <th><h1>Request Id</h1></th>
+                <th><h1>Services</h1></th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+        {% for unique_request in service_requests%}
+           
+            <td width="20%">{{unique_request.first().request_id}}</td>
+            <td><ol class="progtrckr" data-progtrckr-steps="5">{% for service_request in unique_request %}
+                {%if service_request.response_status==401 or service_request.response_status==500 or service_request.response_status==404 or service_request.response_status==400 %}
+                    <li class="progtrckr-done" style="background-color: red;">{{service_request.service_name}}</li>
+                {%else%}
+                <li class="progtrckr-done">{{service_request.service_name}}</li>
+                {%endif%}
+
+{#          <li class="progtrckr-done"></li>
+         <li class="progtrckr-done">{{service_request.response}}</li>
+         <li class="progtrckr-done">{{service_request.response_status}}</li>
+         <li class="progtrckr-todo">{{service_request.service.id}}</li> #}
+        {%endfor%}  
+        </ol>
+                </td>
+        </tr>
+    {%endfor%}  
+    </tbody>
+    </table>
+    </div>
+
+{% endblock %}
+{% block extrascripts %}
+    <script>
+    	$(document).ready(function() {
+        $('.select2').select2()
+    	});
+    </script>
+{% endblock %}

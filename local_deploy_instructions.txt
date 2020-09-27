@@ -1,0 +1,14 @@
+1) ######  Installation
+
+```sh
+	cd connect_4_game
+    mysql create database connect_4_db
+    docker run -d -p 6379:6379  --restart="always"
+    docker run --name redis -p 6380:6379 -d redis
+    pipenv shell
+    pip3 install -r requirements.txt
+```
+2) ######  Run server
+```sh
+    python manage.py runserver 8000
+```
